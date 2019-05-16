@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $("#regform").submit(function (event) {
         event.preventDefault();
-        fire_ajax_submit();
+        update_ajax_submit();
     });
     
     $("#delform").submit(function (event) {
@@ -30,7 +30,7 @@ function delete_ajax_submit() {
 }
 
 
-function fire_ajax_submit() {
+function update_ajax_submit() {
 
     //var data = $("#regform").serializeArray();
     
@@ -39,12 +39,13 @@ function fire_ajax_submit() {
 			"company" : $('#company').val()
 	};
     console.log(data);
+    var user_id = "/users" + $('#id').val();
     var json = JSON.stringify(data);
     console.log(json);
     $.ajax({
-        type: "POST",
+        type: "PUT",
         contentType: "application/json",
-        url: "/users",
+        url: user_id,
         data: json,
         dataType: 'text', // json -> text
         cache: false,
